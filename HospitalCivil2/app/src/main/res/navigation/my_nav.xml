@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/emergencyCallFragment">
+
+    <fragment
+        android:id="@+id/emergencyCallFragment"
+        android:name="mx.itesm.hospitalcivil.EmergencyCallFragment"
+        android:label="fragment_emergency_call"
+        tools:layout="@layout/fragment_emergency_call" />
+    <fragment
+        android:id="@+id/myInfoFragment"
+        android:name="mx.itesm.hospitalcivil.MyInfoFragment"
+        android:label="fragment_my_info"
+        tools:layout="@layout/fragment_my_info" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="mx.itesm.hospitalcivil.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/appointmentListFragment"
+        android:name="mx.itesm.hospitalcivil.AppointmentListFragment"
+        android:label="fragment_appointment_list"
+        tools:layout="@layout/fragment_appointment_list" />
+</navigation>

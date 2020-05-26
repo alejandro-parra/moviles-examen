@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmergencyCallFragment"
+    android:id="@+id/emergencyCallFragment"
+    android:background="#FFFFFF">
+
+    <Button
+        android:id="@+id/callButton"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="55dp"
+        android:background="@color/hospitalRojo"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="Call"
+        android:textColor="@color/hospitalAmarillo"
+        android:textSize="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:background="@color/hospitalAzul"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="EMERGENCY"
+        android:textColor="#FFFFFF"
+        android:textSize="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
