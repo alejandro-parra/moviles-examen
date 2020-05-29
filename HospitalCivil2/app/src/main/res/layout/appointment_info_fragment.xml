@@ -65,10 +65,10 @@
                     android:paddingEnd="10dp"/>
 
                 <TextView
+                    android:id="@+id/appointmentID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="blablabla"
                     android:textColor="@color/hospitalAzul"
                     android:textSize="30dp" />
             </LinearLayout>
@@ -95,10 +95,10 @@
                     android:paddingEnd="10dp"/>
 
                 <TextView
+                    android:id="@+id/appointmentName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="blablabla"
                     android:textColor="@color/hospitalAzul"
                     android:textSize="30dp" />
             </LinearLayout>
@@ -125,10 +125,10 @@
                     android:paddingEnd="10dp"/>
 
                 <TextView
+                    android:id="@+id/appointmentAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="blablabla"
                     android:textColor="@color/hospitalAzul"
                     android:textSize="30dp" />
             </LinearLayout>
@@ -155,10 +155,10 @@
                     android:paddingEnd="10dp"/>
 
                 <TextView
+                    android:id="@+id/appointmentGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="blablabla"
                     android:textColor="@color/hospitalAzul"
                     android:textSize="30dp" />
             </LinearLayout>
@@ -185,10 +185,10 @@
                     android:paddingEnd="10dp"/>
 
                 <TextView
+                    android:id="@+id/appointmentAllergies"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="blablabla"
                     android:textColor="@color/hospitalAzul"
                     android:textSize="30dp" />
             </LinearLayout>
@@ -215,10 +215,10 @@
                     android:paddingEnd="10dp"/>
 
                 <TextView
+                    android:id="@+id/appointmentDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="blablabla"
                     android:textColor="@color/hospitalAzul"
                     android:textSize="30dp" />
             </LinearLayout>

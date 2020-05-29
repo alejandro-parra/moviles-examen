@@ -3,24 +3,32 @@ package mx.itesm.hospitalcivil;
 import android.media.Image;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Appointment implements Serializable {
     private String patientID;
     private String description;
-    private String id;
+    private String authorID;
     private String name;
     private int age;
     private String gender;
-    private String allergies[];
+    private String[] allergies;
 
-    public Appointment(String description, String id, String name, int age, String gender, String[] allergies, String patientID) {
+    public Appointment(String description, String authorID, String name, Date birthDate, String gender, String[] allergies, String patientID) {
         this.description = description;
-        this.id = id;
+        this.authorID = authorID;
         this.name = name;
-        this.age = age;
+        this.age = getAge(birthDate);
         this.gender = gender;
         this.allergies = allergies;
         this.patientID = patientID;
+    }
+    private int getAge(Date birthDate) {
+        Date today = new Date();
+        long diff = today.getTime() - birthDate.getTime();
+        diff /= (365 * 24 * 60 * 60);
+        diff /= 1000;
+        return (int)diff;
     }
     public String getPatientID() {
         return patientID;
@@ -38,12 +46,12 @@ public class Appointment implements Serializable {
         this.description = description;
     }
 
-    public String getId() {
-        return id;
+    public String getAuthorId() {
+        return this.authorID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAuthorId(String id) {
+        this.authorID = id;
     }
 
     public String getName() {

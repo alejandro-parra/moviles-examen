@@ -4,17 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-
-import mx.itesm.hospitalcivil.R;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AppointmentViewHolder> {
     private Context context;
@@ -40,7 +35,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AppointmentViewHol
         //Picasso.with(context).load(appointment.getURL()).placeholder(R.mipmap.ic_launcher_round).into(holder.bookImage);
         //holder.bookImage.setImageResource(R.drawable.ic_launcher_background);//se tiene que cambiar a la imagen del evento
         holder.appointmentName.setText(appointment.getName());
-        holder.appointmentID.setText(appointment.getId());
+        holder.appointmentDesc.setText(appointment.getDescription());
 
     }
 
@@ -53,13 +48,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AppointmentViewHol
 
 
         TextView appointmentName;
-        TextView appointmentID;
+        TextView appointmentDesc;
         OnAppointmentListener onAppointmentListener;
 
         public AppointmentViewHolder(@NonNull View itemView, OnAppointmentListener onAppointmentListener) {
             super(itemView);
-            appointmentName = (TextView) itemView.findViewById(R.id.patientNameText);
-            appointmentID = (TextView) itemView.findViewById(R.id.appointmentIDText);
+            appointmentName = itemView.findViewById(R.id.patientNameText);
+            appointmentDesc = itemView.findViewById(R.id.appointmentDescText);
             itemView.setOnClickListener(this);
             this.onAppointmentListener= onAppointmentListener;
         }

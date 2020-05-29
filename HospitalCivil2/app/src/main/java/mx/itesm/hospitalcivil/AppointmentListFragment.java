@@ -1,5 +1,6 @@
 package mx.itesm.hospitalcivil;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class AppointmentListFragment extends Fragment implements RVAdapter.OnAppointmentListener{
@@ -25,6 +35,7 @@ public class AppointmentListFragment extends Fragment implements RVAdapter.OnApp
     private View vista;
     private LinearLayoutManager linearLayoutManager;
     private RVAdapter adapter;
+    private FirebaseUser user;
 
 
     public static AppointmentListFragment newInstance() {
@@ -46,8 +57,12 @@ public class AppointmentListFragment extends Fragment implements RVAdapter.OnApp
 
         // Initialize firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        FirebaseAuth auth = Fire
-
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user == null){
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
 
         newRequestButton = vista.findViewById(R.id.newRequestButton);
         newRequestButton.setOnClickListener(new View.OnClickListener() {
@@ -58,30 +73,52 @@ public class AppointmentListFragment extends Fragment implements RVAdapter.OnApp
         });
 
 
-        rv = (RecyclerView) vista.findViewById(R.id.appointmentsRecyclerView);
+        rv = vista.findViewById(R.id.appointmentsRecyclerView);
         linearLayoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(linearLayoutManager);
 
         appointments = new ArrayList<>();
-        //Llenar la lista de appointments, hacer queries para hacer retrieve con el ID
-        appointments.add(new Appointment("blablabla","219387123987","juan perez", 57, "male",  new String[]{"naproxeno","ibuprofeno"}, "123"));
-        appointments.add(new Appointment("blablabla","219387123987","gabriela sanchez", 57, "male",  new String[]{"naproxeno","ibuprofeno"}, "123"));
-        appointments.add(new Appointment("blablabla","219387123987","juan perez", 57, "male",  new String[]{"naproxeno","ibuprofeno"}, "123"));
-        appointments.add(new Appointment("blablabla","219387123987","martin perez", 57, "male",  new String[]{"naproxeno","ibuprofeno"}, "123"));
-        appointments.add(new Appointment("blablabla","219387123987","juan perez", 57, "male",  new String[]{"naproxeno","ibuprofeno"}, "123"));
-
-
         final AppointmentListFragment appointmentListener = this;
-        adapter = new RVAdapter(appointments, appointmentListener,getContext());
-        rv.setAdapter(adapter);
+        db.collection("appointment")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for (DocumentSnapshot document : task.getResult()) {
+                                if(user.getEmail().startsWith(document.getString("id"))
+                                || user.getEmail().startsWith(document.getString("createdBy"))) {
+                                    List<String> tmp = (List<String>) document.get("allergic");
+                                    String[] allergies = new String[tmp.size()];
+                                    tmp.toArray(allergies);
+                                    appointments.add(new Appointment(
+                                            document.getString("description"),
+                                            document.getString("createdBy"),
+                                            document.getString("patientName"),
+                                            document.getDate("birthDate"),
+                                            document.getString("gender"),
+                                            allergies,
+                                            document.getString("id")
+                                    ));
+                                }
+                            }
+                            adapter = new RVAdapter(appointments, appointmentListener,getContext());
+                            rv.setAdapter(adapter);
+                        } else{
+                            System.out.println("Valio el query");
+                        }
+                    }
+                });
+
+
 
     }
 
     @Override
     public void onAppointmentClick(int position) {
-        Appointment tmpAppointent = appointments.get(position);
+        Appointment tmpAppointment = appointments.get(position);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("appointment",tmpAppointent);
+        bundle.putSerializable("appointment",tmpAppointment);
         AppointmentInfoFragment appointmentInfoFragment = new AppointmentInfoFragment();
         appointmentInfoFragment.setArguments(bundle);
         ((MainActivity) getActivity()).replaceFragments(appointmentInfoFragment);
