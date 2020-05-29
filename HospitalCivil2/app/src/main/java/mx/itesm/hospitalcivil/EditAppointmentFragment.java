@@ -24,8 +24,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EditAppointmentFragment extends Fragment {
@@ -68,8 +70,8 @@ public class EditAppointmentFragment extends Fragment {
                     int day = Integer.parseInt(date[0]);
                     int month = Integer.parseInt(date[1]);
                     int year = Integer.parseInt(date[2]);
-                    Date birthDate = new Date(year, month, day);
-                    String[] allergies = scan[4].split(",");
+                    Date birthDate = new Date(year - 1900, month, day);
+                    List<String> allergies = Arrays.asList(scan[4].split(","));
                     Map<String, Object> appointment = new HashMap<>();
                     appointment.put("id", scan[0]);
                     appointment.put("patientName", scan[1]);
@@ -92,7 +94,21 @@ public class EditAppointmentFragment extends Fragment {
                                 }
                             });
                 } else {
-                    Appointment appointment = (Appointment) getArguments().getSerializable("appointment");
+                    final Appointment appointment = (Appointment) getArguments().getSerializable("appointment");
+                    db.collection("appointment").document(appointment.getDocID())
+                            .update("description", description.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Bundle bundle = new Bundle();
+                                    Appointment app = (Appointment) getArguments().getSerializable("appointment");
+                                    app.setDescription(description.getText().toString());
+                                    bundle.putSerializable("appointment", app);
+                                    AppointmentInfoFragment appointmentInfoFragment = new AppointmentInfoFragment();
+                                    appointmentInfoFragment.setArguments(bundle);
+                                    ((MainActivity) getActivity()).replaceFragments(appointmentInfoFragment);
+                                }
+                            });
                 }
             }
         });
@@ -117,6 +133,8 @@ public class EditAppointmentFragment extends Fragment {
             status.setText(R.string.creatingStatus);
         } else {
             status.setText(R.string.editStatus);
+            Appointment myAppointment = (Appointment) getArguments().getSerializable("appointment");
+            description.setText(myAppointment.getDescription());
         }
     }
 

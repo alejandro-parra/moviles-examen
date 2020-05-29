@@ -92,6 +92,7 @@ public class AppointmentListFragment extends Fragment implements RVAdapter.OnApp
                                     String[] allergies = new String[tmp.size()];
                                     tmp.toArray(allergies);
                                     appointments.add(new Appointment(
+                                            document.getId(),
                                             document.getString("description"),
                                             document.getString("createdBy"),
                                             document.getString("patientName"),

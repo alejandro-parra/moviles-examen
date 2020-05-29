@@ -1,7 +1,4 @@
 package mx.itesm.hospitalcivil;
-
-import android.media.Image;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,8 +10,11 @@ public class Appointment implements Serializable {
     private int age;
     private String gender;
     private String[] allergies;
+    private String docID;
 
-    public Appointment(String description, String authorID, String name, Date birthDate, String gender, String[] allergies, String patientID) {
+    public Appointment(String docID, String description, String authorID, String name, Date birthDate,
+                       String gender, String[] allergies, String patientID) {
+        this.docID = docID;
         this.description = description;
         this.authorID = authorID;
         this.name = name;
@@ -32,6 +32,10 @@ public class Appointment implements Serializable {
     }
     public String getPatientID() {
         return patientID;
+    }
+
+    public String getDocID(){
+        return this.docID;
     }
 
     public void setPatientID(String patientID) {
