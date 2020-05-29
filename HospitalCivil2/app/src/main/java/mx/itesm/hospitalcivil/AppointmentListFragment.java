@@ -44,6 +44,10 @@ public class AppointmentListFragment extends Fragment implements RVAdapter.OnApp
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Initialize firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        FirebaseAuth auth = Fire
+
 
         newRequestButton = vista.findViewById(R.id.newRequestButton);
         newRequestButton.setOnClickListener(new View.OnClickListener() {
