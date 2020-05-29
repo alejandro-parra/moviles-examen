@@ -22,9 +22,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/hospitalAzul"
-                android:text="Back"
+                android:text="@string/back"
                 android:textColor="@color/hospitalAmarillo"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +37,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:textColor="@color/hospitalAmarillo"
-                android:textSize="40dp"
+                android:textSize="40sp"
                 app:layout_constraintTop_toBottomOf="@+id/backFromEditButton" />
 
             <EditText
@@ -53,7 +53,7 @@
                 android:shadowColor="@color/hospitalAzul"
                 android:shadowRadius="5"
                 android:textColor="@color/hospitalAzul"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appointmentStatus" />
@@ -64,9 +64,9 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/hospitalAzul"
-                android:text="Save"
+                android:text="@string/save"
                 android:textColor="@color/hospitalAmarillo"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionEditText" />

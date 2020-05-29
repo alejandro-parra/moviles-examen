@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Appointments"
+        android:title="@string/appointments"
         android:icon="@drawable/ic_appointments"
         android:id="@+id/appointmentListFragment"/>
     <item
-        android:title="Emergency"
+        android:title="@string/emergency"
         android:icon="@drawable/ic_call_black_24dp"
         android:id="@+id/emergencyCallFragment"/>
     <item
-        android:title="Map"
+        android:title="@string/map"
         android:icon="@drawable/ic_map"
         android:id="@+id/mapsFragment"/>
     <item
-        android:title="MyInfo"
+        android:title="@string/my_info"
         android:icon="@drawable/ic_myinfo"
         android:id="@+id/myInfoFragment"/>
 </menu>

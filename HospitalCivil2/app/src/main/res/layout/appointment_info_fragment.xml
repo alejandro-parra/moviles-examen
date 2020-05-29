@@ -22,7 +22,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/hospitalAzul"
-                android:text="back"
+                android:text="@string/back"
+                android:textAllCaps="true"
                 android:textColor="@color/hospitalAmarillo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -33,12 +34,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@color/hospitalAzul"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                android:text="Appointment"
-                android:background="@color/hospitalAzul"
+                android:text="@string/appointment"
                 android:textColor="@color/hospitalAmarillo"
-                android:textSize="50dp"
+                android:textSize="50sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/backListButton" />
@@ -59,10 +60,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="ID:"
+                    android:paddingEnd="10dp"
+                    android:text="@string/id_colon"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp"
-                    android:paddingEnd="10dp"/>
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/appointmentID"
@@ -70,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -89,10 +90,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Name:"
+                    android:paddingEnd="10dp"
+                    android:text="@string/name_colon"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp"
-                    android:paddingEnd="10dp"/>
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/appointmentName"
@@ -100,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -119,10 +120,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Age:"
+                    android:paddingEnd="10dp"
+                    android:text="@string/age_colon"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp"
-                    android:paddingEnd="10dp"/>
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/appointmentAge"
@@ -130,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -149,10 +150,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Gender:"
+                    android:paddingEnd="10dp"
+                    android:text="@string/gender_colon"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp"
-                    android:paddingEnd="10dp"/>
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/appointmentGender"
@@ -160,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,10 +180,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Allergies:"
+                    android:paddingEnd="10dp"
+                    android:text="@string/allergies_colon"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp"
-                    android:paddingEnd="10dp"/>
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/appointmentAllergies"
@@ -190,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -209,10 +210,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Description:"
+                    android:paddingEnd="10dp"
+                    android:text="@string/description_colon"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp"
-                    android:paddingEnd="10dp"/>
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/appointmentDesc"
@@ -220,7 +221,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:textColor="@color/hospitalAzul"
-                    android:textSize="30dp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -239,7 +240,8 @@
                     android:layout_height="60dp"
                     android:layout_marginRight="30dp"
                     android:background="@color/hospitalAzul"
-                    android:text="Edit"
+                    android:text="@string/edit"
+                    android:textAllCaps="true"
                     android:textColor="@color/hospitalAmarillo" />
 
                 <Button
@@ -247,7 +249,8 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:background="@color/hospitalRojo"
-                    android:text="Delete"
+                    android:text="@string/delete"
+                    android:textAllCaps="true"
                     android:textColor="@color/hospitalAmarillo" />
 
             </LinearLayout>

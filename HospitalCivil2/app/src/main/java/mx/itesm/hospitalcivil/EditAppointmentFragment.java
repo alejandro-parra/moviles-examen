@@ -65,7 +65,7 @@ public class EditAppointmentFragment extends Fragment {
             public void onClick(View v) {
                 if(getArguments().containsKey("scan")){
                     String[] scan = getArguments().getString("scan").split("/");
-                    // format MM DD YYY
+                    // format DD MM YYY
                     String[] date = scan[2].split(" ");
                     int day = Integer.parseInt(date[0]);
                     int month = Integer.parseInt(date[1]);
