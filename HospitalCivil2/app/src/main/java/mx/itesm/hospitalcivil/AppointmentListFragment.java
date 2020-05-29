@@ -86,8 +86,8 @@ public class AppointmentListFragment extends Fragment implements RVAdapter.OnApp
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for (DocumentSnapshot document : task.getResult()) {
-                                if(user.getEmail().startsWith(document.getString("id"))
-                                || user.getEmail().startsWith(document.getString("createdBy"))) {
+                                if(user.getEmail().startsWith(document.getString("id").toLowerCase())
+                                || user.getEmail().startsWith(document.getString("createdBy").toLowerCase())) {
                                     List<String> tmp = (List<String>) document.get("allergic");
                                     String[] allergies = new String[tmp.size()];
                                     tmp.toArray(allergies);
