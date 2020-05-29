@@ -3,4 +3,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="qr_scan_error">Not a valid input! Please try again</string>
+    <string name="qr_scan_instructions">Scan the patient\'s QR code</string>
+    <string name="qr_scan_placeholder">Scan code will be shown here</string>
+    <string name="qr_scan_id">ID: </string>
+    <string name="qr_scan_name">Full name: </string>
+    <string name="qr_scan_age">Age: </string>
+    <string name="qr_scan_gender">Gender: </string>
+    <string name="qr_scan_allergies">Allergies: </string>
+    <string name="continue_uppercase">CONTINUE</string>
+    <string name="cancel_uppercase">CANCEL</string>
 </resources>

@@ -2,6 +2,8 @@ package mx.itesm.hospitalcivil;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,24 +36,20 @@ public class AppointmentListFragment extends Fragment implements RVAdapter.OnApp
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.fragment_appointment_list, container, false);
-        Bundle bundle = getArguments();
-        patientID = bundle.getString("id");
+
+        return vista;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
 
         newRequestButton = vista.findViewById(R.id.newRequestButton);
         newRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //aqui hacer un query donde le pides a la base de datos la lista de su familia
-                ArrayList<String> familyMembers = new ArrayList<>();
-                familyMembers.add("123");
-                familyMembers.add("345");
-                Bundle bundle1 = new Bundle();
-                SelectMemberFragment selectMemberFragment = new SelectMemberFragment();
-                bundle1.putStringArrayList("familymembers",familyMembers);
-                bundle1.putString("id",patientID);
-                selectMemberFragment.setArguments(bundle1);
-                ((MainActivity) getActivity()).replaceFragments(selectMemberFragment);
+                ((MainActivity) getActivity()).replaceFragments(new CameraActivity());
             }
         });
 
@@ -73,9 +71,6 @@ public class AppointmentListFragment extends Fragment implements RVAdapter.OnApp
         adapter = new RVAdapter(appointments, appointmentListener,getContext());
         rv.setAdapter(adapter);
 
-
-
-        return vista;
     }
 
     @Override

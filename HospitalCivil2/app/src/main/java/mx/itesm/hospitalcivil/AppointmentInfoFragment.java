@@ -25,9 +25,16 @@ public class AppointmentInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.appointment_info_fragment, container, false);
+        return vista;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         appointment = (Appointment) getArguments().getSerializable("appointment");
-        backButton = vista.findViewById(R.id.backListButton);
-        editAppointmentButton = vista.findViewById(R.id.editAppointmentButton);
+        backButton = view.findViewById(R.id.backListButton);
+        editAppointmentButton = view.findViewById(R.id.editAppointmentButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +51,6 @@ public class AppointmentInfoFragment extends Fragment {
                 ((MainActivity)getActivity()).replaceFragments(editAppointmentFragment);
             }
         });
-        return vista;
     }
 
     @Override
