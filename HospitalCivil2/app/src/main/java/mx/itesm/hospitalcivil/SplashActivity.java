@@ -8,16 +8,18 @@ import android.os.Handler;
 import android.transition.Fade;
 import android.view.Window;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SplashActivity extends AppCompatActivity {
 
     private long splashTime = 3000L;
     private Handler myHandler;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        mAuth = FirebaseAuth.getInstance();
 
         myHandler = new Handler();
         myHandler.postDelayed(new Runnable() {
@@ -30,9 +32,14 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void goToMainActivity(){
-        Intent intent = new Intent(this.getApplicationContext(), LoginActivity.class);
-        startActivity(intent);
-        finish();
-
+        if(mAuth.getCurrentUser() == null){
+            Intent intent = new Intent(this.getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

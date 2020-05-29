@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1093661871138",
+    "firebase_url": "https://hospitalcivil-76f8a.firebaseio.com",
+    "project_id": "hospitalcivil-76f8a",
+    "storage_bucket": "hospitalcivil-76f8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093661871138:android:74009941a2dc7d68dc0e7b",
+        "android_client_info": {
+          "package_name": "mx.itesm.hospitalcivil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093661871138-47p7lopkurnov0ev0ufsv2gtmibpf7dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZleEGVE01Te47G6oOCIqxY2aTGDrJ6F8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093661871138-47p7lopkurnov0ev0ufsv2gtmibpf7dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
