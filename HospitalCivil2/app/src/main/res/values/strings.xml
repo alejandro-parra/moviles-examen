@@ -13,4 +13,6 @@
     <string name="qr_scan_allergies">Allergies: </string>
     <string name="continue_uppercase">CONTINUE</string>
     <string name="cancel_uppercase">CANCEL</string>
+    <string name="editStatus">Edit Appointment</string>
+    <string name="creatingStatus">New Appointment</string>
 </resources>

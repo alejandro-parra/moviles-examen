@@ -47,6 +47,7 @@ public class AppointmentInfoFragment extends Fragment {
                 EditAppointmentFragment editAppointmentFragment = new EditAppointmentFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("father","appointmentInfo");
+                bundle.putSerializable("appointment", appointment);
                 editAppointmentFragment.setArguments(bundle);
                 ((MainActivity)getActivity()).replaceFragments(editAppointmentFragment);
             }

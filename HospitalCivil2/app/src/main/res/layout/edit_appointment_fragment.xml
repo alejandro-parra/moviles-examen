@@ -29,17 +29,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/appointmentStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@color/hospitalAzul"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                android:text="Edit Appointment"
                 android:textColor="@color/hospitalAmarillo"
                 android:textSize="40dp"
-                app:layout_constraintTop_toBottomOf="@+id/backFromEditButton"
-                android:background="@color/hospitalAzul"/>
+                app:layout_constraintTop_toBottomOf="@+id/backFromEditButton" />
 
             <EditText
                 android:id="@+id/descriptionEditText"
@@ -53,14 +52,14 @@
                 android:hint="Description"
                 android:shadowColor="@color/hospitalAzul"
                 android:shadowRadius="5"
-                android:text="ewFWIPUFBRWKJBVRBSKJVBWKJVBDKVJBDKJSDBKJSDBKJSDBKSDJBFKSDJBVKSJBSDKJBSDKJFBSDKJBDSKVBSVKJDSBVKJSDBVKJDSBVKSDJBVKSDJBVKSDBVKSDBVKSDBVKS"
                 android:textColor="@color/hospitalAzul"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/appointmentStatus" />
 
             <Button
+                android:id="@+id/saveAppointment"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
