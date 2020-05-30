@@ -1,5 +1,7 @@
 package mx.itesm.hospitalcivil;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -29,6 +31,10 @@ public class EmergencyCallFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Hacer llamada de emergencia
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:3339424400"));
+                startActivity(intent);
+
             }
         });
         return vista;
