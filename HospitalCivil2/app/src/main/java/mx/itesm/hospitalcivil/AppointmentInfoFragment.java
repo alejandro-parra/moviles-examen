@@ -1,5 +1,7 @@
 package mx.itesm.hospitalcivil;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,14 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AppointmentInfoFragment extends Fragment {
-    private Button backButton,editAppointmentButton;
+    private Button backButton,editAppointmentButton, deleteAppointmentButton;
     private Appointment appointment;
     public static AppointmentInfoFragment newInstance() {
         return new AppointmentInfoFragment();
@@ -31,16 +39,23 @@ public class AppointmentInfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         appointment = (Appointment) getArguments().getSerializable("appointment");
         setValues(view, appointment);
         backButton = view.findViewById(R.id.backListButton);
         editAppointmentButton = view.findViewById(R.id.editAppointmentButton);
+        deleteAppointmentButton = view.findViewById(R.id.deleteAppointmentButton);
+
+        // Back button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getActivity()).replaceFragments(new AppointmentListFragment());
             }
         });
+
+        // Edit button
         editAppointmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +65,45 @@ public class AppointmentInfoFragment extends Fragment {
                 bundle.putSerializable("appointment", appointment);
                 editAppointmentFragment.setArguments(bundle);
                 ((MainActivity)getActivity()).replaceFragments(editAppointmentFragment);
+            }
+        });
+
+        // Delete button
+        deleteAppointmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage(R.string.Confirmation);
+                // Add the buttons
+                builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        db.collection("appointment").document(appointment.getDocID())
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(getActivity().getApplicationContext(), "Appointment deleted succesfully", Toast.LENGTH_SHORT);
+                                ((MainActivity)getActivity()).replaceFragments(new AppointmentListFragment());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("Error deleting document", e);
+                            }
+                        });
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+
+                // Create the AlertDialog
+                AlertDialog dialog = builder.create();
+
+                dialog.show();
             }
         });
     }
