@@ -39,6 +39,7 @@ class CameraActivity : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         barCodeDetector = BarcodeDetector.Builder(activity).setBarcodeFormats(Barcode.QR_CODE).build()
 
         cameraSource = CameraSource.Builder(activity, barCodeDetector).setRequestedPreviewSize(640, 480).build()
@@ -47,19 +48,16 @@ class CameraActivity : Fragment() {
         scanContinue.setTextColor(Color.GRAY)
         scanContinue.setOnClickListener {
             cameraSource!!.stop()
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
+//            val transaction = activity?.supportFragmentManager?.beginTransaction()
             var newIntent = EditAppointmentFragment()
             var bun = Bundle()
             bun.putString("scan",resultScan)
             newIntent.arguments = bun
-            transaction?.replace(R.id.main_container, newIntent)
-            transaction?.commit()
+            (activity as MainActivity).replaceFragments(newIntent, "camera", null)
         }
 
         scanCancel.setOnClickListener {
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.main_container, AppointmentListFragment())
-            transaction?.commit()
+            (activity as MainActivity).goBack()
         }
 
         cameraView!!.holder.addCallback(object: SurfaceHolder.Callback{

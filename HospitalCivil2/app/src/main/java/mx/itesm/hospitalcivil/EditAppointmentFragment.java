@@ -55,7 +55,6 @@ public class EditAppointmentFragment extends Fragment {
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         description = view.findViewById(R.id.descriptionEditText);
-        backFromEditButton = view.findViewById(R.id.backFromEditButton);
         status = view.findViewById(R.id.appointmentStatus);
         saveButton = view.findViewById(R.id.saveAppointment);
 
@@ -86,7 +85,7 @@ public class EditAppointmentFragment extends Fragment {
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
                                    if(task.isSuccessful()) {
                                        AppointmentListFragment appointmentListFragment = new AppointmentListFragment();
-                                       ((MainActivity) getActivity()).replaceFragments(appointmentListFragment);
+                                       ((MainActivity) getActivity()).replaceFragmentsAndReset(appointmentListFragment);
                                    }
                                    else {
                                        Toast.makeText(getContext(), "There was a problem, contact administration", Toast.LENGTH_SHORT);
@@ -100,13 +99,13 @@ public class EditAppointmentFragment extends Fragment {
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Bundle bundle = new Bundle();
-                                    Appointment app = (Appointment) getArguments().getSerializable("appointment");
-                                    app.setDescription(description.getText().toString());
-                                    bundle.putSerializable("appointment", app);
-                                    AppointmentInfoFragment appointmentInfoFragment = new AppointmentInfoFragment();
-                                    appointmentInfoFragment.setArguments(bundle);
-                                    ((MainActivity) getActivity()).replaceFragments(appointmentInfoFragment);
+//                                    Bundle bundle = new Bundle();
+//                                    Appointment app = (Appointment) getArguments().getSerializable("appointment");
+//                                    app.setDescription(description.getText().toString());
+//                                    bundle.putSerializable("appointment", app);
+//                                    AppointmentInfoFragment appointmentInfoFragment = new AppointmentInfoFragment();
+//                                    appointmentInfoFragment.setArguments(bundle);
+                                    ((MainActivity) getActivity()).replaceFragmentsAndReset(new AppointmentListFragment());
                                 }
                             });
                 }
@@ -115,20 +114,21 @@ public class EditAppointmentFragment extends Fragment {
 
 
         // Back Button functionality
-        backFromEditButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getArguments().containsKey("father") && getArguments().getString("father").equals("appointmentInfo")) {
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("appointment",getArguments().getSerializable("appointment"));
-                    AppointmentInfoFragment appointmentInfoFragment = new AppointmentInfoFragment();
-                    appointmentInfoFragment.setArguments(bundle);
-                    ((MainActivity) getActivity()).replaceFragments(appointmentInfoFragment);
-                } else if (getArguments().containsKey("scan")) {
-                    ((MainActivity)getActivity()).replaceFragments(new CameraActivity());
-                }
-            }
-        });
+//        backFromEditButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (getArguments().containsKey("father") && getArguments().getString("father").equals("appointmentInfo")) {
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("appointment",getArguments().getSerializable("appointment"));
+//                    AppointmentInfoFragment appointmentInfoFragment = new AppointmentInfoFragment();
+//                    appointmentInfoFragment.setArguments(bundle);
+//                    ((MainActivity) getActivity()).replaceFragments(appointmentInfoFragment);
+//                } else if (getArguments().containsKey("scan")) {
+//                    ((MainActivity)getActivity()).replaceFragments(new CameraActivity());
+//                }
+//            }
+//        });
+
         if(getArguments().containsKey("scan")){
             status.setText(R.string.creatingStatus);
         } else {

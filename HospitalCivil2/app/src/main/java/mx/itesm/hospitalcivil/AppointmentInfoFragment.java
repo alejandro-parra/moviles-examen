@@ -7,10 +7,12 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,7 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AppointmentInfoFragment extends Fragment {
-    private Button backButton,editAppointmentButton, deleteAppointmentButton;
+    private Button editAppointmentButton, deleteAppointmentButton;
     private Appointment appointment;
     public static AppointmentInfoFragment newInstance() {
         return new AppointmentInfoFragment();
@@ -38,22 +40,15 @@ public class AppointmentInfoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         appointment = (Appointment) getArguments().getSerializable("appointment");
         setValues(view, appointment);
-        backButton = view.findViewById(R.id.backListButton);
         editAppointmentButton = view.findViewById(R.id.editAppointmentButton);
         deleteAppointmentButton = view.findViewById(R.id.deleteAppointmentButton);
 
-        // Back button
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity)getActivity()).replaceFragments(new AppointmentListFragment());
-            }
-        });
 
         // Edit button
         editAppointmentButton.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +59,7 @@ public class AppointmentInfoFragment extends Fragment {
                 bundle.putString("father","appointmentInfo");
                 bundle.putSerializable("appointment", appointment);
                 editAppointmentFragment.setArguments(bundle);
-                ((MainActivity)getActivity()).replaceFragments(editAppointmentFragment);
+                ((MainActivity)getActivity()).replaceFragments(editAppointmentFragment, "info", appointment);
             }
         });
 
@@ -83,7 +78,7 @@ public class AppointmentInfoFragment extends Fragment {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(getActivity().getApplicationContext(), "Appointment deleted succesfully", Toast.LENGTH_SHORT);
-                                ((MainActivity)getActivity()).replaceFragments(new AppointmentListFragment());
+                                ((MainActivity)getActivity()).replaceFragmentsAndReset(new AppointmentListFragment());
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

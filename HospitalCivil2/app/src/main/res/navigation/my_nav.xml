@@ -11,11 +11,6 @@
         android:label="fragment_emergency_call"
         tools:layout="@layout/fragment_emergency_call" />
     <fragment
-        android:id="@+id/myInfoFragment"
-        android:name="mx.itesm.hospitalcivil.MyInfoFragment"
-        android:label="fragment_my_info"
-        tools:layout="@layout/fragment_my_info" />
-    <fragment
         android:id="@+id/mapsFragment"
         android:name="mx.itesm.hospitalcivil.MapsFragment"
         android:label="fragment_maps"

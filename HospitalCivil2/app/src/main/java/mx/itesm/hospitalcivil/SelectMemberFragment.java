@@ -47,7 +47,7 @@ public class SelectMemberFragment extends Fragment implements FamilyRVAdapter.On
                 Bundle bundle = new Bundle();
                 AppointmentListFragment appointmentListFragment = new AppointmentListFragment();
                 appointmentListFragment.setArguments(bundle);
-                ((MainActivity) getActivity()).replaceFragments(appointmentListFragment);
+//                ((MainActivity) getActivity()).replaceFragments(appointmentListFragment);
             }
         });
 
@@ -89,6 +89,6 @@ public class SelectMemberFragment extends Fragment implements FamilyRVAdapter.On
         bundle.putString("father","selectMember");
         EditAppointmentFragment editAppointmentFragment= new EditAppointmentFragment();
         editAppointmentFragment.setArguments(bundle);
-        ((MainActivity) getActivity()).replaceFragments(editAppointmentFragment);
+//        ((MainActivity) getActivity()).replaceFragments(editAppointmentFragment);
     }
 }

@@ -30,7 +30,6 @@ import java.util.List;
 public class AppointmentListFragment extends Fragment implements RVAdapter.OnAppointmentListener{
     Button newRequestButton;
     private ArrayList<Appointment> appointments;
-    private String patientID;
     private RecyclerView rv;
     private View vista;
     private LinearLayoutManager linearLayoutManager;
@@ -68,7 +67,7 @@ public class AppointmentListFragment extends Fragment implements RVAdapter.OnApp
         newRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) getActivity()).replaceFragments(new CameraActivity());
+                ((MainActivity) getActivity()).replaceFragments(new CameraActivity(), "list", null);
             }
         });
 
@@ -122,6 +121,6 @@ public class AppointmentListFragment extends Fragment implements RVAdapter.OnApp
         bundle.putSerializable("appointment",tmpAppointment);
         AppointmentInfoFragment appointmentInfoFragment = new AppointmentInfoFragment();
         appointmentInfoFragment.setArguments(bundle);
-        ((MainActivity) getActivity()).replaceFragments(appointmentInfoFragment);
+        ((MainActivity) getActivity()).replaceFragments(appointmentInfoFragment, "list", null);
     }
 }

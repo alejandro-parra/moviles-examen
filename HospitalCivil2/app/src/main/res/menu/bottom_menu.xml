@@ -13,8 +13,4 @@
         android:title="@string/map"
         android:icon="@drawable/ic_map"
         android:id="@+id/mapsFragment"/>
-    <item
-        android:title="@string/my_info"
-        android:icon="@drawable/ic_myinfo"
-        android:id="@+id/myInfoFragment"/>
 </menu>

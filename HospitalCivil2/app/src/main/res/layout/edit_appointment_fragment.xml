@@ -15,30 +15,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/backFromEditButton"
-                android:layout_width="100dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/hospitalAzul"
-                android:text="@string/back"
-                android:textColor="@color/hospitalAmarillo"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/appointmentStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:background="@color/hospitalAzul"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:textColor="@color/hospitalAmarillo"
                 android:textSize="40sp"
-                app:layout_constraintTop_toBottomOf="@+id/backFromEditButton" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/descriptionEditText"
