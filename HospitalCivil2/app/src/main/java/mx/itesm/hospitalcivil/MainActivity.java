@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.LinkedList;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, TaskLoadedCallback{
     BottomNavigationView bottomNavigationView;
     private LinkedList<MyFragment> fragments;
     @Override
@@ -19,8 +21,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-
-
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2E3192")));
         if(savedInstanceState == null) {
             fragments = new LinkedList<>();
             bottomNavigationView.setSelectedItemId(R.id.emergencyCallFragment);
@@ -104,7 +105,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             super.onBackPressed();
         }
     }
+    @Override
+    public void onTaskDone(Object... values) {
+        MapsFragment mapsFragment = (MapsFragment) getSupportFragmentManager().findFragmentById(R.id.mapsFragment);
+        mapsFragment.onTaskDone(values);
+    }
 }
+
 class MyFragment {
     public String name;
     public Object bundle;
