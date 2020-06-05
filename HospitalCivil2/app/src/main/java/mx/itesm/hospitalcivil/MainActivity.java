@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, TaskLoadedCallback{
     BottomNavigationView bottomNavigationView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case(R.id.mapsFragment):
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_container,
-                        new MapsFragment()).commit();
+                        new MapsFragment(),"MAPS_FRAGMENT").commit();
                 break;
             case(R.id.myInfoFragment):
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_container,
@@ -61,4 +60,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_container, fragmentClass).commit();
     }
+
+    @Override
+    public void onTaskDone(Object... values) {
+        MapsFragment mapsFragment = (MapsFragment) getSupportFragmentManager().findFragmentByTag("MAPS_FRAGMENT");
+        mapsFragment.onTaskDone(values);
+    }
+
 }
