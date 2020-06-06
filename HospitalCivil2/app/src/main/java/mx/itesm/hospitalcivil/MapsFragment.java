@@ -29,6 +29,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -83,8 +84,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,TaskLoa
                 mMap.clear();
                 Log.d("mylog", "updated Markers");
                 MarkerOptions options = new MarkerOptions();
-                options.position(currentLoc.getPosition());
-                mMap.addMarker(currentLoc);
+//                options.position(currentLoc.getPosition()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).position(currentLoc.getPosition()));
+//                mMap.addMarker(currentLoc);
                 mMap.addMarker(destination);
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc.getPosition(),11));
 
@@ -116,10 +118,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,TaskLoa
         this.mMap = googleMap;
         Log.d("mylog", "Added Markers");
         MarkerOptions options = new MarkerOptions();
-        options.position(currentLoc.getPosition());
+//        options.position(currentLoc.getPosition()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         options.title("Place 1");
+        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).position(currentLoc.getPosition()));
 
-        mMap.addMarker(currentLoc);
+//        mMap.addMarker(currentLoc);
         mMap.addMarker(destination);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLoc.getPosition(),11));
     }

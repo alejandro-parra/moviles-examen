@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
     public void replaceFragmentsAndReset(Fragment fragmentClass){
         fragments = new LinkedList<>();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         replaceFragments(fragmentClass);
     }
 
